@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciador de Notas e Médias</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <svg
+          class="title-icon"
+          viewBox="0 0 512.001 512.001"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            style="fill: #2ba5f7"
+            d="M433.8,39.869V472.13c0,16.766-13.598,30.363-30.363,30.363H108.572c-16.778,0-30.376-13.598-30.376-30.363V39.869c0-16.766,13.598-30.363,30.376-30.363h294.865C420.203,9.506,433.8,23.103,433.8,39.869z"
+          />
+          <path
+            style="fill: #2197d8"
+            d="M113.679,472.13V39.869c0-16.766,13.598-30.363,30.376-30.363h-35.483c-16.778,0-30.376,13.598-30.376,30.363V472.13c0,16.766,13.598,30.363,30.376,30.363h35.483C127.277,502.493,113.679,488.895,113.679,472.13z"
+          />
+          <rect
+            x="129.894"
+            y="60.589"
+            style="fill: #666666"
+            width="252.196"
+            height="82.321"
+          />
+          <g>
+            <rect
+              x="228.385"
+              y="293.205"
+              style="fill: #f7b239"
+              width="55.214"
+              height="59.333"
+            />
+            <rect
+              x="129.894"
+              y="293.205"
+              style="fill: #f7b239"
+              width="55.214"
+              height="59.333"
+            />
+            <rect
+              x="129.894"
+              y="395.345"
+              style="fill: #f7b239"
+              width="55.214"
+              height="59.333"
+            />
+            <rect
+              x="228.385"
+              y="395.345"
+              style="fill: #f7b239"
+              width="55.214"
+              height="59.333"
+            />
+            <polygon
+              style="fill: #f7b239"
+              points="382.096,413.595 382.096,454.68 326.882,454.68 326.882,413.595 326.882,395.347 326.882,293.206 382.096,293.206 382.096,395.347"
+            />
+            <rect
+              x="326.876"
+              y="191.051"
+              style="fill: #f7b239"
+              width="55.214"
+              height="59.346"
+            />
+            <rect
+              x="228.385"
+              y="191.051"
+              style="fill: #f7b239"
+              width="55.214"
+              height="59.346"
+            />
+            <rect
+              x="129.894"
+              y="191.051"
+              style="fill: #f7b239"
+              width="55.214"
+              height="59.346"
+            />
+          </g>
+        </svg>
+        Gerenciador de Notas e Médias
+      </h1>
+
+      <div class="two-columns">
+        <div class="left-column">
+          <div class="form-section">
+            <h2>Adicionar Nota</h2>
+            <div class="input-group">
+              <label for="nome">Nome:</label>
+              <input type="text" id="nome" placeholder="Digite o nome" />
+            </div>
+
+            <div class="input-group">
+              <label for="nota">Nota:</label>
+              <input
+                type="number"
+                id="nota"
+                placeholder="Digite a nota (0-10)"
+                min="0"
+                max="10"
+                step="0.1"
+              />
+            </div>
+
+            <button id="btnAdicionar" class="btn btn-primary">
+              Adicionar Nota
+            </button>
+          </div>
+
+          <div class="button-section">
+            <h2>Calcular</h2>
+            <button id="btnCalcularMedia" class="btn btn-success">
+              Calcular Média
+            </button>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="notas-section">
+            <h2>Notas Cadastradas</h2>
+            <div id="listaNotas" class="lista-notas"></div>
+          </div>
+        </div>
+      </div>
+      <div class="media-section">
+        <h2>Média Total</h2>
+        <div id="mediaTotal" class="media-display"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
