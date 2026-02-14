@@ -2,6 +2,7 @@ const inputNome = document.getElementById('nome');
 const inputNota = document.getElementById('nota');
 const btnAdicionar = document.getElementById('btnAdicionar');
 const btnCalcularMedia = document.getElementById('btnCalcularMedia');
+const btnExportar = document.getElementById('btnExportar');
 const listaNotas = document.getElementById('listaNotas');
 const mediaTotal = document.getElementById('mediaTotal');
 
@@ -17,6 +18,7 @@ function inicializar() {
     
     btnAdicionar.addEventListener('click', adicionarNota);
     btnCalcularMedia.addEventListener('click', calcularMedia);
+    btnExportar.addEventListener('click', exportarNotas);
     
     inputNota.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -119,4 +121,42 @@ function salvarNotas() {
 function carregarNotas() {
     const notasSalvas = localStorage.getItem(STORAGE_KEY);
     return notasSalvas ? JSON.parse(notasSalvas) : [];
+}
+
+function exportarNotas() {
+    if (notas.length === 0) {
+        alert('Nenhuma nota cadastrada para exportar!');
+        return;
+    }
+    
+    const dataAtual = new Date();
+    const dataFormatada = dataAtual.toLocaleDateString('pt-BR').replace(/\//g, '-');
+    const horaFormatada = dataAtual.toLocaleTimeString('pt-BR').replace(/:/g, '-');
+    
+    const dadosExportacao = {
+        dataExportacao: dataAtual.toISOString(),
+        totalNotas: notas.length,
+        notas: notas.map(nota => ({
+            nome: nota.nome,
+            nota: nota.nota
+        }))
+    };
+    
+    const soma = notas.reduce((acc, nota) => acc + nota.nota, 0);
+    const media = soma / notas.length;
+    dadosExportacao.mediaGeral = parseFloat(media.toFixed(2));
+    
+    const json = JSON.stringify(dadosExportacao, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `notas_${dataFormatada}_${horaFormatada}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    alert(`${notas.length} nota(s) exportada(s) com sucesso!`);
 }
