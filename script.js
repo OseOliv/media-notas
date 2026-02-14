@@ -1,4 +1,3 @@
-// Elementos do DOM
 const inputNome = document.getElementById('nome');
 const inputNota = document.getElementById('nota');
 const btnAdicionar = document.getElementById('btnAdicionar');
